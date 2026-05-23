@@ -1,0 +1,301 @@
+.navbar {
+  height: 70px;
+
+  background: #ff8c42;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 40px;
+
+  color: white;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 100;
+}
+
+.logo {
+  font-size: 30px;
+
+  font-weight: bold;
+
+  letter-spacing: 1px;
+
+  cursor: pointer;
+}
+
+.navLinks {
+  display: flex;
+
+  align-items: center;
+
+  gap: 25px;
+}
+
+.navLinks a {
+  text-decoration: none;
+
+  color: white;
+
+  font-size: 17px;
+
+  font-weight: 500;
+
+  transition: 0.3s;
+}
+
+.navLinks a:hover {
+  color: #ffe0cc;
+}
+
+.loginBtn {
+  padding: 10px 20px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #ff8c42;
+
+  font-weight: bold;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.loginBtn:hover {
+  background: #ffe0cc;
+
+  transform: translateY(-2px);
+}
+
+.registerBtn {
+  padding: 10px 18px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: white;
+
+  color: #ff8c42;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.registerBtn:hover {
+  background: #ffe0cc;
+}
+
+.userSection {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+.userName {
+  color: white;
+
+  text-decoration: none;
+
+  font-weight: bold;
+
+  transition: 0.3s;
+}
+
+.userName:hover {
+  color: #ffe0cc;
+}
+
+.logoutBtn {
+  padding: 10px 18px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: white;
+
+  color: red;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.logoutBtn:hover {
+  background: #ffe0cc;
+}
+
+.cartLink {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  position: relative;
+
+  font-weight: bold;
+}
+
+.cartCount {
+  background: white;
+
+  color: #ff8c42;
+
+  font-size: 13px;
+
+  font-weight: bold;
+
+  width: 22px;
+
+  height: 22px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+
+}
+
+
+/* MODAL OVERLAY */
+
+.modalOverlay {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  background: rgba(0,0,0,0.5);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 999;
+}
+
+/* MODAL BOX */
+
+.logoutModal {
+  width: 400px;
+
+  background: white;
+
+  padding: 35px;
+
+  border-radius: 25px;
+
+  text-align: center;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+  animation: popup 0.3s ease;
+}
+
+.logoutModal h2 {
+  color: #ff8c42;
+
+  margin-bottom: 15px;
+}
+
+.logoutModal p {
+  color: gray;
+
+  margin-bottom: 30px;
+
+  font-size: 17px;
+}
+
+/* BUTTONS */
+
+.modalButtons {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 20px;
+}
+
+.cancelBtn,
+.confirmBtn {
+  padding: 12px 25px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.cancelBtn {
+  background: #eee;
+
+  color: #333;
+}
+
+.confirmBtn {
+  background: #ff4d4d;
+
+  color: white;
+}
+
+.cancelBtn:hover,
+.confirmBtn:hover {
+  transform: translateY(-2px);
+}
+
+/* POPUP ANIMATION */
+
+@keyframes popup {
+
+  from {
+    transform: scale(0.8);
+
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+
+    opacity: 1;
+  }
+}

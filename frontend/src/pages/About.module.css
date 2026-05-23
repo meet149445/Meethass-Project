@@ -1,0 +1,245 @@
+.aboutContainer {
+  min-height: 100vh;
+
+  background: #fff7f2;
+
+  color: #333;
+}
+
+/* HERO SECTION */
+
+.heroSection {
+  height: 55vh;
+
+  background: linear-gradient(
+    to right,
+    #ff8c42,
+    #ffb380
+  );
+
+  color: white;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 20px;
+}
+
+.heroSection h1 {
+  font-size: 65px;
+
+  margin-bottom: 20px;
+}
+
+.heroSection p {
+  max-width: 800px;
+
+  font-size: 22px;
+
+  line-height: 1.7;
+}
+
+/* STORY */
+
+.storySection {
+  padding: 80px 40px;
+
+  text-align: center;
+}
+
+.storySection h2 {
+  font-size: 42px;
+
+  color: #ff8c42;
+
+  margin-bottom: 25px;
+}
+
+.storySection p {
+  max-width: 900px;
+
+  margin: auto;
+
+  font-size: 20px;
+
+  line-height: 1.8;
+}
+
+/* FEATURES */
+
+.featuresSection {
+  padding: 40px;
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 30px;
+
+  flex-wrap: wrap;
+}
+
+.featureCard {
+  width: 300px;
+
+  background: white;
+
+  padding: 35px;
+
+  border-radius: 25px;
+
+  text-align: center;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+  transition: 0.3s;
+}
+
+.featureCard:hover {
+  transform: translateY(-5px);
+}
+
+.featureCard h3 {
+  color: #ff8c42;
+
+  margin-bottom: 15px;
+
+  font-size: 24px;
+}
+
+.featureCard p {
+  line-height: 1.6;
+}
+
+/* CREATOR */
+
+.creatorSection {
+  padding: 80px 40px;
+
+  display: flex;
+
+  justify-content: center;
+}
+
+.creatorCard {
+  width: 500px;
+
+  background: white;
+
+  padding: 45px;
+
+  border-radius: 30px;
+
+  text-align: center;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.avatar {
+  width: 120px;
+
+  height: 120px;
+
+  background: #ff8c42;
+
+  color: white;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 50px;
+
+  font-weight: bold;
+
+  margin: auto;
+
+  margin-bottom: 25px;
+}
+
+.creatorCard h2 {
+  color: #ff8c42;
+
+  margin-bottom: 10px;
+
+  font-size: 36px;
+}
+
+.role {
+  color: gray;
+
+  margin-bottom: 20px;
+
+  font-size: 18px;
+}
+
+.creatorText {
+  line-height: 1.7;
+
+  font-size: 17px;
+}
+
+/* CONTACT */
+
+.contactSection {
+  padding: 80px 40px;
+
+  text-align: center;
+}
+
+.contactSection h2 {
+  color: #ff8c42;
+
+  font-size: 42px;
+
+  margin-bottom: 40px;
+}
+
+.contactCards {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 30px;
+
+  flex-wrap: wrap;
+}
+
+.contactCard {
+  width: 280px;
+
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 20px;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+  transition: 0.3s;
+}
+
+.contactCard:hover {
+  transform: translateY(-5px);
+}
+
+.contactCard h3 {
+  color: #ff8c42;
+
+  margin-bottom: 15px;
+}
+
+.contactCard p {
+  font-size: 17px;
+}
