@@ -243,3 +243,51 @@
 .contactCard p {
   font-size: 17px;
 }
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+  .heroSection {
+    height: auto;
+    padding: 60px 20px;
+  }
+
+  .heroSection h1 {
+    font-size: 42px;
+  }
+
+  .heroSection p {
+    font-size: 17px;
+  }
+
+  .storySection,
+  .creatorSection,
+  .contactSection {
+    padding: 50px 20px;
+  }
+
+  .storySection h2,
+  .contactSection h2 {
+    font-size: 32px;
+  }
+
+  .storySection p {
+    font-size: 16px;
+  }
+
+  .creatorCard {
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .creatorCard h2 {
+    font-size: 28px;
+  }
+
+  .featureCard,
+  .contactCard {
+    width: 100%;
+  }
+
+}

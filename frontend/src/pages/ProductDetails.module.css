@@ -105,3 +105,48 @@
 .cartBtn:hover {
   transform: translateY(-3px);
 }
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+  .card {
+    flex-direction: column;
+    width: 100%;
+    padding: 25px;
+  }
+
+  .image {
+    width: 100%;
+    height: auto;
+  }
+
+  .details h1 {
+    font-size: 36px;
+  }
+
+  .price {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .cartBtn {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .container {
+    padding: 20px;
+  }
+
+  .details h1 {
+    font-size: 30px;
+  }
+
+}

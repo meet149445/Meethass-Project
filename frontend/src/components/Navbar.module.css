@@ -299,3 +299,101 @@
     opacity: 1;
   }
 }
+/* RESPONSIVE NAVBAR */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    height: auto;
+
+    padding: 15px 12px;
+
+    gap: 15px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .navLinks {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-wrap: nowrap;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    overflow-x: auto;
+
+    padding-bottom: 5px;
+
+    scrollbar-width: none;
+  }
+
+  .navLinks::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navLinks a {
+    font-size: 14px;
+
+    white-space: nowrap;
+  }
+
+  .userSection {
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    gap: 12px;
+  }
+
+  .loginBtn,
+  .registerBtn,
+  .logoutBtn {
+
+    padding: 8px 14px;
+
+    font-size: 13px;
+  }
+
+  .cartCount {
+    width: 18px;
+
+    height: 18px;
+
+    font-size: 11px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .navLinks {
+    gap: 10px;
+  }
+
+  .navLinks a {
+    font-size: 13px;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+}

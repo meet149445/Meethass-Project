@@ -77,3 +77,45 @@
 
   font-weight: bold;
 }
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+  .cartContainer {
+    padding: 20px;
+  }
+
+  .heading {
+    font-size: 30px;
+  }
+
+  .cartCard {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .image {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+  }
+
+  .details p {
+    font-size: 15px;
+  }
+
+  .quantityBox {
+    justify-content: center;
+  }
+
+  .paymentBtn,
+  .removeBtn {
+    width: 100%;
+  }
+
+  .totalBox {
+    font-size: 22px;
+  }
+
+}

@@ -305,3 +305,26 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 600px) {
+
+  .heading {
+    font-size: 28px;
+  }
+
+  .card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cardIcon {
+    width: 65px;
+    height: 65px;
+    font-size: 28px;
+  }
+
+  .orderCard {
+    padding: 20px;
+  }
+
+}

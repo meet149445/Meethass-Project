@@ -194,3 +194,27 @@
     transform: translateY(0);
   }
 }
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+
+  .authCard {
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .authCard h1 {
+    font-size: 32px;
+  }
+
+  .authCard p {
+    font-size: 15px;
+  }
+
+  .topCircle,
+  .bottomCircle {
+    display: none;
+  }
+
+}

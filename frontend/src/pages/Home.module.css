@@ -1,61 +1,66 @@
 /* SEARCH SECTION */
-
 .searchSection {
   display: flex;
-
   justify-content: center;
-
   padding: 35px 20px;
 }
 
 /* SEARCH INPUT */
-
 .searchInput {
   width: 450px;
-
   padding: 16px 22px;
-
   border: none;
-
   outline: none;
-
   border-radius: 40px;
-
   font-size: 17px;
-
   background: #fff5ee;
-
   box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-
   transition: 0.3s;
 }
 
 .searchInput:focus {
   transform: scale(1.02);
-
   box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
-/* PRODUCTS GRID */
-
+/* PRODUCTS GRID - Desktop (4 columns) */
 .productsGrid {
   padding: 20px 40px 50px;
-
   display: grid;
-
   grid-template-columns: repeat(4, 1fr);
-
   gap: 25px;
 }
 
 /* NO PRODUCTS */
-
 .noProducts {
   text-align: center;
-
   grid-column: span 4;
-
   color: #ff8c42;
-
   margin-top: 50px;
+}
+
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+  .searchSection {
+    padding: 20px 15px;
+  }
+
+  .searchInput {
+    width: 100%;
+    font-size: 15px;
+    padding: 12px 18px;
+  }
+
+  /* 3-column square grid on mobile */
+  .productsGrid {
+    grid-template-columns: repeat(3, 1fr);  /* 3 columns */
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .noProducts {
+    grid-column: span 3;  /* updated to match 3 columns */
+  }
 }

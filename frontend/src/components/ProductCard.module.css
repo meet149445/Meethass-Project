@@ -1,15 +1,12 @@
+/* ===== BASE (Desktop) ===== */
 .card {
   background: white;
-
   padding: 20px;
-
   border-radius: 15px;
-
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-
   text-align: center;
-
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -18,44 +15,83 @@
 
 .card img {
   width: 100%;
-
   height: 220px;
-
   object-fit: cover;
-
   border-radius: 10px;
 }
 
 .card h2 {
   margin: 15px 0 10px;
+  font-size: 16px;
 }
 
 .card p {
   font-size: 18px;
-
   font-weight: bold;
-
   color: #ff8c42;
 }
 
 .card button {
   margin-top: 12px;
-
   padding: 10px 16px;
-
   border: none;
-
   background: #ff8c42;
-
   color: white;
-
   border-radius: 8px;
-
   cursor: pointer;
-
   transition: 0.3s;
 }
 
 .card button:hover {
   background: #ff6b00;
+}
+
+
+/* ===== MOBILE: 3-column square grid ===== */
+@media (max-width: 768px) {
+  .card {
+    padding: 8px;
+    border-radius: 10px;
+    aspect-ratio: 1 / 1;         /* perfect square */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .card img {
+    width: 100%;
+    height: 55%;                  /* image fills top half of square */
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  .card h2 {
+    font-size: 10px;
+    margin: 4px 0 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+  .card p {
+    font-size: 10px;
+    margin: 0;
+    color: #ff8c42;
+    font-weight: bold;
+  }
+
+  .card button {
+    width: 100%;
+    padding: 4px;
+    font-size: 9px;
+    border-radius: 5px;
+    margin-top: 4px;
+    border: none;
+    background: #ff8c42;
+    color: white;
+    cursor: pointer;
+  }
 }
