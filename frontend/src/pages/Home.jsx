@@ -22,7 +22,7 @@ const Home = () => {
 
     const data = await getProducts();
 
-    setProducts(data);
+setProducts(data || []);
   };
 
   // FILTER PRODUCTS

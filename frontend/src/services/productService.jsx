@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API =
-  "http://localhost:8000/products";
+  `${import.meta.env.VITE_API_URL}/products`;
+
 
 // GET ALL PRODUCTS
 export const getProducts = async () => {
@@ -16,8 +17,10 @@ export const getProducts = async () => {
 
     console.log(error);
 
+    return [];
   }
 };
+
 
 // GET SINGLE PRODUCT
 export const getSingleProduct = async (
@@ -36,5 +39,6 @@ export const getSingleProduct = async (
 
     console.log(error);
 
+    return null;
   }
 };
