@@ -16,10 +16,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose
-  .connect(MONGODB)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log(err));
+mongoose.connect(MONGODB)
+  .then(() => {
+    console.log("MongoDB Connected Successfully");
+  })
+  .catch((err) => {
+    console.log("MongoDB Error:", err);
+  });
 
 app.get("/", (req, res) => {
   res.send("Mithaas Backend Running");
