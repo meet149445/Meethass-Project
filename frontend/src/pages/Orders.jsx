@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 import styles from "./Orders.module.css";
 
-import imageMap from "../ImagesMap";
+import { getMyOrders }
+from "../services/orderService";
 
 const Orders = () => {
 
@@ -10,12 +11,16 @@ const Orders = () => {
 
   useEffect(() => {
 
-    const savedOrders =
-      JSON.parse(localStorage.getItem("orders")) || [];
-
-    setOrders(savedOrders);
+    fetchOrders();
 
   }, []);
+
+  const fetchOrders = async () => {
+
+    const data = await getMyOrders();
+
+    setOrders(data || []);
+  };
 
   return (
 
@@ -57,58 +62,63 @@ const Orders = () => {
 
         <div className={styles.ordersGrid}>
 
-          {orders.map((item) => (
+          {orders.map((order) => (
 
-            <div
-              key={item._id}
-              className={styles.orderCard}
-            >
+            <div key={order._id}>
 
-              {/* IMAGE */}
+              {order.items.map((item, index) => (
 
-              <div className={styles.imageBox}>
+                <div
+                  key={index}
+                  className={styles.orderCard}
+                >
 
-                <img
-                  src={imageMap[item.image]}
-                  alt={item.name}
-                  className={styles.productImage}
-                />
+                  {/* IMAGE */}
+                  <div className={styles.imageBox}>
 
-              </div>
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className={styles.productImage}
+                    />
 
-              {/* DETAILS */}
+                  </div>
 
-              <div className={styles.cardContent}>
+                  {/* DETAILS */}
+                  <div className={styles.cardContent}>
 
-                <h2 className={styles.productTitle}>
-                  {item.name}
-                </h2>
+                    <h2 className={styles.productTitle}>
+                      {item.name}
+                    </h2>
 
-                <p className={styles.productPrice}>
-                  ₹ {item.price}
-                </p>
+                    <p className={styles.productPrice}>
+                      ₹ {item.price}
+                    </p>
 
-                <p className={styles.quantity}>
-                  Quantity: {item.quantity}
-                </p>
+                    <p className={styles.quantity}>
+                      Quantity: {item.quantity}
+                    </p>
 
-                <div className={styles.bottomRow}>
+                    <div className={styles.bottomRow}>
 
-                  <span className={styles.status}>
-                    Delivered
-                  </span>
+                      <span className={styles.status}>
+                        {order.orderStatus}
+                      </span>
 
-                  <span className={styles.total}>
-                    ₹ {item.price * item.quantity}
-                  </span>
+                      <span className={styles.total}>
+                        ₹ {item.price * item.quantity}
+                      </span>
+
+                    </div>
+
+                    <button className={styles.orderButton}>
+                      Order Successful
+                    </button>
+
+                  </div>
 
                 </div>
-
-                <button className={styles.orderButton}>
-                  Order Successful
-                </button>
-
-              </div>
+              ))}
 
             </div>
           ))}
