@@ -38,8 +38,6 @@ const Login = () => {
   JSON.stringify(response.user)
 );
 
-      alert("Login Successful 🍬");
-
       navigate("/home");
 
     } catch (error) {

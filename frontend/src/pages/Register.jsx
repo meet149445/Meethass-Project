@@ -29,8 +29,6 @@ const Register = () => {
 
       await registerUser(formData);
 
-      alert("Registration Successful 🍭");
-
       navigate("/login");
 
     } catch (error) {
