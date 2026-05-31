@@ -41,6 +41,9 @@ const Cart = () => {
       "cart",
       JSON.stringify(updatedCart)
     );
+    window.dispatchEvent(
+  new Event("cartUpdated")
+);
   };
 
   // DECREASE QUANTITY
@@ -68,6 +71,9 @@ const Cart = () => {
       "cart",
       JSON.stringify(filteredCart)
     );
+    window.dispatchEvent(
+  new Event("cartUpdated")
+);
   };
 
   // REMOVE ITEM
@@ -83,6 +89,9 @@ const Cart = () => {
       "cart",
       JSON.stringify(updatedCart)
     );
+    window.dispatchEvent(
+  new Event("cartUpdated")
+);
   };
 
   // PAYMENT SUCCESS

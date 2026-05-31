@@ -5,7 +5,10 @@ import {
   useNavigate
 } from "react-router-dom";
 
-import { useState } from "react";
+import {
+  useState,
+  useEffect
+} from "react";
 
 const Navbar = () => {
 
@@ -13,6 +16,9 @@ const Navbar = () => {
 
   const [showLogoutModal, setShowLogoutModal]
     = useState(false);
+
+  const [cartCount, setCartCount]
+    = useState(0);
 
   // Get user
   const user = JSON.parse(
@@ -23,28 +29,52 @@ const Navbar = () => {
   const isAdmin =
     user?.role === "admin";
 
-  // Cart
-  const cart = JSON.parse(
-    localStorage.getItem("cart")
-  ) || [];
+  useEffect(() => {
 
-  // Cart Count
-  const cartCount = cart.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+    const updateCartCount = () => {
+
+      const cart =
+        JSON.parse(
+          localStorage.getItem("cart")
+        ) || [];
+
+      const count = cart.reduce(
+        (total, item) =>
+          total + item.quantity,
+        0
+      );
+
+      setCartCount(count);
+    };
+
+    updateCartCount();
+
+    window.addEventListener(
+      "cartUpdated",
+      updateCartCount
+    );
+
+    return () => {
+
+      window.removeEventListener(
+        "cartUpdated",
+        updateCartCount
+      );
+    };
+
+  }, []);
 
   // Logout Confirm
-   const confirmLogout = () => {
+  const confirmLogout = () => {
 
-  localStorage.removeItem("token");
+    localStorage.removeItem("token");
 
-  localStorage.removeItem("user");
+    localStorage.removeItem("user");
 
-  localStorage.removeItem("cart");
+    navigate("/");
 
-  navigate("/");
-};
+    window.location.reload();
+  };
 
   return (
     <>
@@ -79,14 +109,12 @@ const Navbar = () => {
             📦 Orders
           </Link>
 
-          {/* ADMIN ONLY */}
           {isAdmin && (
             <Link to="/admin">
               🔥 Admin
             </Link>
           )}
 
-          {/* BEFORE LOGIN */}
           {!user && (
             <>
               <Link to="/login">
@@ -103,7 +131,6 @@ const Navbar = () => {
             </>
           )}
 
-          {/* AFTER LOGIN */}
           {user && (
             <div className={styles.userSection}>
 
@@ -130,7 +157,6 @@ const Navbar = () => {
 
       </nav>
 
-      {/* LOGOUT MODAL */}
       {showLogoutModal && (
 
         <div className={styles.modalOverlay}>

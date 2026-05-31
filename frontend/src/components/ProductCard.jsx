@@ -48,6 +48,9 @@ const ProductCard = ({ product }) => {
         "cart",
         JSON.stringify(updatedCart)
       );
+      window.dispatchEvent(
+  new Event("cartUpdated")
+);
 
     } else {
 
@@ -64,6 +67,9 @@ const ProductCard = ({ product }) => {
         "cart",
         JSON.stringify(updatedCart)
       );
+      window.dispatchEvent(
+  new Event("cartUpdated")
+);
     }
 
     // Refresh navbar/cart

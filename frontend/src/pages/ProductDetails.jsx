@@ -70,6 +70,9 @@ const ProductDetails = () => {
       "cart",
       JSON.stringify(updatedCart)
     );
+    window.dispatchEvent(
+  new Event("cartUpdated")
+);
 
     alert("Added to Cart 🛒");
   };
