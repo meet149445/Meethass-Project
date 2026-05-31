@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
 
-import {
-  useParams
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 
-import {
-  getSingleProduct
-} from "../services/productService";
+import { getSingleProduct } from "../services/productService";
 
 import imageMap from "../ImagesMap";
 
@@ -21,15 +17,12 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-
     fetchProduct();
-
   }, [id]);
 
   const fetchProduct = async () => {
 
-    const data =
-      await getSingleProduct(id);
+    const data = await getSingleProduct(id);
 
     setProduct(data);
   };
@@ -38,9 +31,7 @@ const ProductDetails = () => {
   const addToCart = () => {
 
     const existingCart =
-      JSON.parse(
-        localStorage.getItem("cart")
-      ) || [];
+      JSON.parse(localStorage.getItem("cart")) || [];
 
     const productExists =
       existingCart.find(
@@ -51,19 +42,18 @@ const ProductDetails = () => {
 
     if (productExists) {
 
-      updatedCart =
-        existingCart.map((item) => {
+      updatedCart = existingCart.map((item) => {
 
-          if (item._id === product._id) {
+        if (item._id === product._id) {
 
-            return {
-              ...item,
-              quantity: item.quantity + 1
-            };
-          }
+          return {
+            ...item,
+            quantity: item.quantity + 1,
+          };
+        }
 
-          return item;
-        });
+        return item;
+      });
 
     } else {
 
@@ -71,8 +61,8 @@ const ProductDetails = () => {
         ...existingCart,
         {
           ...product,
-          quantity: 1
-        }
+          quantity: 1,
+        },
       ];
     }
 
@@ -104,9 +94,7 @@ const ProductDetails = () => {
 
           <div className={styles.details}>
 
-            <h1>
-              {product.name}
-            </h1>
+            <h1>{product.name}</h1>
 
             <p className={styles.price}>
               ₹{product.price}
