@@ -190,8 +190,8 @@ const Admin = () => {
                       className={styles.item}
                     >
 
-                      <img
-  src={imageMap[item.image] || item.image}
+                    <img
+  src={imageMap[item.image]}
   alt={item.name}
 />
 

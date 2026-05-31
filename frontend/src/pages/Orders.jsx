@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import imageMap from "../ImagesMap";
 import styles from "./Orders.module.css";
 
 import { getMyOrders }
@@ -77,10 +77,9 @@ const Orders = () => {
                   <div className={styles.imageBox}>
 
                     <img
-                      src={item.image}
-                      alt={item.name}
-                      className={styles.productImage}
-                    />
+  src={imageMap[item.image]}
+  alt={item.name}
+/>
 
                   </div>
 

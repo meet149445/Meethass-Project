@@ -4,10 +4,12 @@ import styles from "./Cart.module.css";
 import imageMap from "../ImagesMap";
 import PaymentModal from "../components/PaymentModal.jsx";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
 
   const [showPayment, setShowPayment] = useState(false);
+  const navigate = useNavigate();
 
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
@@ -94,54 +96,63 @@ const Cart = () => {
 );
   };
 
-  // PAYMENT SUCCESS
-  const handlePaymentSuccess = async () => {
+// PAYMENT SUCCESS
+const handlePaymentSuccess = async () => {
 
-    try {
+  try {
 
-      alert("Payment Successful");
+    const token =
+      localStorage.getItem("token");
 
-      const token =
-        localStorage.getItem("token");
+    const formattedItems = cart.map((item) => ({
+  productId: item._id,
+  name: item.name,
+  price: item.price,
+  quantity: item.quantity,
+  image: item.image,
+}));
 
-      const formattedItems = cart.map((item) => ({
-        productId: item._id,
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-        image: imageMap[item.image],
-      }));
+    const orderData = {
+      items: formattedItems,
+      totalAmount,
+    };
 
-      const orderData = {
-        items: formattedItems,
-        totalAmount,
-      };
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_URL}/orders`,
+      orderData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/orders`,
-        orderData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+    console.log(response.data);
 
-      console.log(response.data);
+    // Clear cart
+    localStorage.removeItem("cart");
 
-      localStorage.removeItem("cart");
+    // Update Navbar count instantly
+    window.dispatchEvent(
+      new Event("cartUpdated")
+    );
 
-      setCart([]);
+    // Update local state
+    setCart([]);
 
-      setShowPayment(false);
+    // Close payment modal
+    setShowPayment(false);
 
-    } catch (error) {
+    // Redirect to Orders page
+    navigate("/orders");
 
-      console.log(error);
+  } catch (error) {
 
-      alert("Failed to place order");
-    }
-  };
+    console.log(error);
+
+    alert("Failed to place order");
+  }
+};
 
   return (
     <div className={styles.cartContainer}>
