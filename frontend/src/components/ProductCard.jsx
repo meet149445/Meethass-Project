@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import styles from "./ProductCard.module.css";
 
 import imageMap from "../ImagesMap";
@@ -8,6 +10,9 @@ from "react-router-dom";
 const ProductCard = ({ product }) => {
 
   const navigate = useNavigate();
+
+  const [added, setAdded] =
+    useState(false);
 
   const addToCart = () => {
 
@@ -24,10 +29,12 @@ const ProductCard = ({ product }) => {
           item._id === product._id
       );
 
+    let updatedCart;
+
     if (productExists) {
 
       // Increase quantity
-      const updatedCart =
+      updatedCart =
         existingCart.map((item) => {
 
           if (
@@ -44,43 +51,40 @@ const ProductCard = ({ product }) => {
           return item;
         });
 
-      localStorage.setItem(
-        "cart",
-        JSON.stringify(updatedCart)
-      );
-      window.dispatchEvent(
-  new Event("cartUpdated")
-);
-
     } else {
 
       // Add new product
-      const updatedCart = [
+      updatedCart = [
         ...existingCart,
         {
           ...product,
           quantity: 1
         }
       ];
-
-      localStorage.setItem(
-        "cart",
-        JSON.stringify(updatedCart)
-      );
-      window.dispatchEvent(
-  new Event("cartUpdated")
-);
     }
 
-    // Refresh navbar/cart
-    alert("Added to Cart 🛒");
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(updatedCart)
+    );
+
+    window.dispatchEvent(
+      new Event("cartUpdated")
+    );
+
+    setAdded(true);
+
+    setTimeout(() => {
+
+      setAdded(false);
+
+    }, 1000);
   };
 
   return (
 
     <div
       className={styles.card}
-
       onClick={() =>
         navigate(
           `/product/${product._id}`
@@ -107,7 +111,9 @@ const ProductCard = ({ product }) => {
           addToCart();
         }}
       >
-        Add To Cart
+        {added
+          ? "✓ Added"
+          : "Add To Cart"}
       </button>
 
     </div>
