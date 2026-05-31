@@ -1,20 +1,17 @@
 import { useState } from "react";
 
 import styles from "./Cart.module.css";
-
 import imageMap from "../ImagesMap";
-
-import PaymentModal from "../components/PaymentModal.jsx"
-
+import PaymentModal from "../components/PaymentModal.jsx";
 import axios from "axios";
 
 const Cart = () => {
 
   const [showPayment, setShowPayment] = useState(false);
 
-  const cart = JSON.parse(
-    localStorage.getItem("cart")
-  ) || [];
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
 
   // TOTAL AMOUNT
   const totalAmount = cart.reduce(
@@ -29,22 +26,21 @@ const Cart = () => {
     const updatedCart = cart.map((item) => {
 
       if (item._id === id) {
-
         return {
           ...item,
-          quantity: item.quantity + 1
+          quantity: item.quantity + 1,
         };
       }
 
       return item;
     });
 
+    setCart(updatedCart);
+
     localStorage.setItem(
       "cart",
       JSON.stringify(updatedCart)
     );
-
-    window.location.reload();
   };
 
   // DECREASE QUANTITY
@@ -53,27 +49,25 @@ const Cart = () => {
     const updatedCart = cart.map((item) => {
 
       if (item._id === id) {
-
         return {
           ...item,
-          quantity: item.quantity - 1
+          quantity: item.quantity - 1,
         };
       }
 
       return item;
     });
 
-    // REMOVE ITEMS WITH 0 QUANTITY
     const filteredCart = updatedCart.filter(
       (item) => item.quantity > 0
     );
+
+    setCart(filteredCart);
 
     localStorage.setItem(
       "cart",
       JSON.stringify(filteredCart)
     );
-
-    window.location.reload();
   };
 
   // REMOVE ITEM
@@ -83,63 +77,62 @@ const Cart = () => {
       (item) => item._id !== id
     );
 
+    setCart(updatedCart);
+
     localStorage.setItem(
       "cart",
       JSON.stringify(updatedCart)
     );
-
-    window.location.reload();
   };
 
   // PAYMENT SUCCESS
-const handlePaymentSuccess = async () => {
+  const handlePaymentSuccess = async () => {
 
-  try {
+    try {
 
-    alert("Payment Successful");
+      alert("Payment Successful");
 
-    const cartItems =
-      JSON.parse(localStorage.getItem("cart")) || [];
+      const token =
+        localStorage.getItem("token");
 
-    const token = localStorage.getItem("token");
+      const formattedItems = cart.map((item) => ({
+        productId: item._id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        image: imageMap[item.image],
+      }));
 
-    const formattedItems = cartItems.map((item) => ({
-  productId: item._id,
-  name: item.name,
-  price: item.price,
-  quantity: item.quantity,
-  image: imageMap[item.image],
-}));
+      const orderData = {
+        items: formattedItems,
+        totalAmount,
+      };
 
-const orderData = {
-  items: formattedItems,
-  totalAmount,
-};
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/orders`,
+        orderData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-    const response = await axios.post(
-  `${import.meta.env.VITE_API_URL}/orders`,
-      orderData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+      console.log(response.data);
 
-    console.log(response.data);
+      localStorage.removeItem("cart");
 
-    localStorage.removeItem("cart");
+      setCart([]);
 
-    window.location.reload();
+      setShowPayment(false);
 
-  } catch (error) {
+    } catch (error) {
 
-    console.log(error);
+      console.log(error);
 
-    alert("Failed to place order");
-
-  }
-};
+      alert("Failed to place order");
+    }
+  };
 
   return (
     <div className={styles.cartContainer}>
@@ -176,11 +169,8 @@ const orderData = {
 
                   <h2>{item.name}</h2>
 
-                  <p>
-                    ₹{item.price}
-                  </p>
+                  <p>₹{item.price}</p>
 
-                  {/* QUANTITY CONTROLS */}
                   <div className={styles.quantityBox}>
 
                     <button
@@ -206,8 +196,7 @@ const orderData = {
                   </div>
 
                   <p className={styles.subtotal}>
-                    Total:
-                    ₹
+                    Total: ₹
                     {item.price * item.quantity}
                   </p>
 
@@ -227,7 +216,6 @@ const orderData = {
 
           </div>
 
-          {/* TOTAL BOX */}
           <div className={styles.totalBox}>
 
             <h2>
@@ -243,7 +231,6 @@ const orderData = {
 
           </div>
 
-          {/* PAYMENT MODAL */}
           <PaymentModal
             show={showPayment}
             onClose={() => setShowPayment(false)}

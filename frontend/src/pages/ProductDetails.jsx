@@ -8,8 +8,7 @@ import Navbar from "../components/Navbar";
 
 import {
   getSingleProduct
-}
-from "../services/productService";
+} from "../services/productService";
 
 import imageMap from "../ImagesMap";
 
@@ -19,14 +18,13 @@ const ProductDetails = () => {
 
   const { id } = useParams();
 
-  const [product, setProduct]
-    = useState(null);
+  const [product, setProduct] = useState(null);
 
   useEffect(() => {
 
     fetchProduct();
 
-  }, []);
+  }, [id]);
 
   const fetchProduct = async () => {
 
@@ -49,9 +47,11 @@ const ProductDetails = () => {
         (item) => item._id === product._id
       );
 
+    let updatedCart;
+
     if (productExists) {
 
-      const updatedCart =
+      updatedCart =
         existingCart.map((item) => {
 
           if (item._id === product._id) {
@@ -65,28 +65,23 @@ const ProductDetails = () => {
           return item;
         });
 
-      localStorage.setItem(
-        "cart",
-        JSON.stringify(updatedCart)
-      );
-
     } else {
 
-      const updatedCart = [
+      updatedCart = [
         ...existingCart,
         {
           ...product,
           quantity: 1
         }
       ];
-
-      localStorage.setItem(
-        "cart",
-        JSON.stringify(updatedCart)
-      );
     }
 
-    window.location.reload();
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(updatedCart)
+    );
+
+    alert("Added to Cart 🛒");
   };
 
   if (!product) {
@@ -118,18 +113,14 @@ const ProductDetails = () => {
             </p>
 
             <p className={styles.category}>
-              Category:
-              {" "}
-              {product.category}
+              Category: {product.category}
             </p>
 
             <p className={styles.description}>
-
               {
                 product.description ||
                 "Delicious traditional Indian sweet made with love and premium ingredients 🍬"
               }
-
             </p>
 
             <button
