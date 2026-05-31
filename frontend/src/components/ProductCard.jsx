@@ -67,7 +67,7 @@ const ProductCard = ({ product }) => {
     }
 
     // Refresh navbar/cart
-    window.location.reload();
+    alert("Added to Cart 🛒");
   };
 
   return (

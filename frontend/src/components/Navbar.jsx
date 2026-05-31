@@ -35,16 +35,16 @@ const Navbar = () => {
   );
 
   // Logout Confirm
-  const confirmLogout = () => {
+   const confirmLogout = () => {
 
-    localStorage.removeItem("token");
+  localStorage.removeItem("token");
 
-    localStorage.removeItem("user");
+  localStorage.removeItem("user");
 
-    navigate("/");
+  localStorage.removeItem("cart");
 
-    window.location.reload();
-  };
+  navigate("/");
+};
 
   return (
     <>
