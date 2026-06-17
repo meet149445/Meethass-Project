@@ -32,8 +32,8 @@ const EditProduct = () => {
   const fetchProduct = async () => {
 
     const response = await axios.get(
-      `http://localhost:8000/products/${id}`
-    );
+  `${import.meta.env.VITE_API_URL}/products/${id}`
+);
 
     setFormData(response.data);
   };
@@ -57,14 +57,14 @@ const EditProduct = () => {
         localStorage.getItem("token");
 
       await axios.put(
-        `http://localhost:8000/products/update/${id}`,
-        formData,
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
+  `${import.meta.env.VITE_API_URL}/products/update/${id}`,
+  formData,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
       alert(
         "Product Updated 🔥"

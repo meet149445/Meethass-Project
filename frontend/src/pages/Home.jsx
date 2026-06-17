@@ -11,19 +11,23 @@ import styles from "./Home.module.css";
 const Home = () => {
 
   const [products, setProducts] = useState([]);
-
-  const [search, setSearch] = useState("");
+const [loading, setLoading] = useState(true);
+const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
   const fetchProducts = async () => {
-
+  try {
     const data = await getProducts();
-
-setProducts(data || []);
-  };
+    setProducts(data || []);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   // FILTER PRODUCTS
   const filteredProducts = products.filter(
@@ -55,25 +59,30 @@ setProducts(data || []);
       {/* PRODUCTS */}
       <div className={styles.productsGrid}>
 
-        {filteredProducts.length > 0 ? (
+  {loading ? (
 
-          filteredProducts.map((product) => (
+    <h2 className={styles.noProducts}>
+      Loading sweets 🍬...
+    </h2>
 
-            <ProductCard
-              key={product._id}
-              product={product}
-            />
-          ))
+  ) : filteredProducts.length > 0 ? (
 
-        ) : (
+    filteredProducts.map((product) => (
+      <ProductCard
+        key={product._id}
+        product={product}
+      />
+    ))
 
-          <h2 className={styles.noProducts}>
-            No sweets found 🍭
-          </h2>
+  ) : (
 
-        )}
+    <h2 className={styles.noProducts}>
+      No sweets found 🍭
+    </h2>
 
-      </div>
+  )}
+
+</div>
     </>
   );
 };

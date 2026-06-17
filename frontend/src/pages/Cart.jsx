@@ -5,6 +5,7 @@ import imageMap from "../ImagesMap";
 import PaymentModal from "../components/PaymentModal.jsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import UserLayout from "../layouts/UserLayout";
 
 const Cart = () => {
 
@@ -155,6 +156,7 @@ const handlePaymentSuccess = async () => {
 };
 
   return (
+    <UserLayout>
     <div className={styles.cartContainer}>
 
       <h1 className={styles.heading}>
@@ -262,6 +264,7 @@ const handlePaymentSuccess = async () => {
       )}
 
     </div>
+    </UserLayout>
   );
 };
 

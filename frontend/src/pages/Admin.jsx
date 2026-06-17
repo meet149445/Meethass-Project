@@ -19,13 +19,13 @@ const Admin = () => {
       console.log("TOKEN => ", token);
 
       const response = await axios.get(
-        "http://localhost:8000/orders/admin",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+  `${import.meta.env.VITE_API_URL}/orders/admin`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
       console.log("SUCCESS RESPONSE => ", response.data);
 
@@ -190,9 +190,18 @@ const Admin = () => {
                       className={styles.item}
                     >
 
-                    <img
-  src={imageMap[item.image]}
+                 <img
+  src={
+    imageMap[item.image] ||
+    item.image ||
+    "https://via.placeholder.com/70?text=Sweet"
+  }
   alt={item.name}
+  className={styles.itemImage}
+  onError={(e) => {
+    e.target.src =
+      "https://via.placeholder.com/70?text=Sweet";
+  }}
 />
 
                       <div className={styles.itemInfo}>

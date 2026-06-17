@@ -328,3 +328,30 @@
   }
 
 }
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 0;
+}
+
+.itemImage {
+  width: 70px;
+  height: 70px;
+
+  object-fit: contain;
+
+  border-radius: 12px;
+
+  background: #f9fafb;
+
+  padding: 6px;
+
+  flex-shrink: 0;
+}
+
+.itemInfo {
+  flex: 1;
+}

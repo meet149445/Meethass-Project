@@ -30,7 +30,7 @@ const AddProduct = () => {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://localhost:8000/products/create",
+        `${import.meta.env.VITE_API_URL}/products/create`,
         formData,
         {
           headers: {

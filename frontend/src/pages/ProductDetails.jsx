@@ -15,6 +15,7 @@ const ProductDetails = () => {
   const { id } = useParams();
 
   const [product, setProduct] = useState(null);
+  const [added, setAdded] = useState(false);
 
   useEffect(() => {
     fetchProduct();
@@ -74,7 +75,11 @@ const ProductDetails = () => {
   new Event("cartUpdated")
 );
 
-    alert("Added to Cart 🛒");
+    setAdded(true);
+
+setTimeout(() => {
+  setAdded(false);
+}, 1500);
   };
 
   if (!product) {
@@ -115,11 +120,12 @@ const ProductDetails = () => {
             </p>
 
             <button
-              onClick={addToCart}
-              className={styles.cartBtn}
-            >
-              Add To Cart
-            </button>
+  onClick={addToCart}
+  className={styles.cartBtn}
+  disabled={added}
+>
+  {added ? "✓ Added" : "Add To Cart"}
+</button>
 
           </div>
 

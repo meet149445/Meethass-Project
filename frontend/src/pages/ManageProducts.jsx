@@ -21,7 +21,7 @@ const ManageProducts = () => {
     try {
 
       const response = await axios.get(
-        "http://localhost:8000/products"
+        `${import.meta.env.VITE_API_URL}/products`
       );
 
       setProducts(response.data);
@@ -44,7 +44,7 @@ const ManageProducts = () => {
         localStorage.getItem("token");
 
       await axios.delete(
-        `http://localhost:8000/products/delete/${id}`,
+        `${import.meta.env.VITE_API_URL}/products/delete/${id}`,
         {
           headers: {
             authorization: token,
