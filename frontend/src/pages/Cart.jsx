@@ -5,7 +5,7 @@ import imageMap from "../ImagesMap";
 import PaymentModal from "../components/PaymentModal.jsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import UserLayout from "../layouts/UserLayout";
+import UserLayout from "../Layouts/UserLayout";
 
 const Cart = () => {
 

@@ -3,7 +3,7 @@ import imageMap from "../ImagesMap";
 import styles from "./Orders.module.css";
 
 import { getMyOrders } from "../services/orderService";
-import UserLayout from "../layouts/UserLayout";
+import UserLayout from "../Layouts/UserLayout";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
